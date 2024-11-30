@@ -1,0 +1,52 @@
+name: "Deploy to NuGet"
+on:
+  push:
+    branches: [master]
+    
+env:
+  PROJECT_PATH: 'MongoDbRepoGeneric/MongoDbRepoGeneric.csproj'
+  PACKAGE_OUTPUT_DIRECTORY: ${{ github.workspace }}/output
+  NUGET_SOURCE_URL: 'https://api.nuget.org/v3/index.json'
+
+jobs:
+  deploy:
+    name: 'Deploy'
+    runs-on: 'ubuntu-latest'
+    permissions:
+      contents: write
+    steps:
+    - name: 'Checkout'
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    - name: Set tags env variables.
+      run: |
+        echo "${{toJSON(github.event)}}"
+
+    - name: 'Install dotnet'
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '8.x'
+
+    - name: 'Restore packages'
+      run: dotnet restore ${{ env.PROJECT_PATH }}
+
+    - name: 'Build project'
+      run: dotnet build ${{ env.PROJECT_PATH }} --no-restore --configuration Release
+    
+    - name: calculate version
+      id: calculate-version
+     
+      uses: bitshifted/git-auto-semver@v1.1.0
+      with:
+          main_branch: master
+          create_tag: true
+          tag_prefix: 'v'
+    - name: Use version
+      run: echo 'Calculated version:' ${{ steps.calculate-version.outputs.version-string }}
+
+    - name: 'Pack project'
+      run: dotnet pack ${{ env.PROJECT_PATH }} --no-restore --no-build --configuration Release --include-symbols -p:PackageVersion=${{ steps.calculate-version.outputs.version-string }} --output ${{ env.PACKAGE_OUTPUT_DIRECTORY }}
+
+    - name: 'Push package'
+      run: dotnet nuget push ${{ env.PACKAGE_OUTPUT_DIRECTORY }}/*.nupkg -k ${{ secrets.NUGET_APIKEY }} -s ${{ env.NUGET_SOURCE_URL }}
