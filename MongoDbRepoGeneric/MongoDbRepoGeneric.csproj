@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<RootNamespace>mongodb_generic_repo_pattern</RootNamespace>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<Version>1.0.0</Version>
+		<Authors>stefanodesimone</Authors>
+		<Description>This repo provides implementation generic repository pattern on MongoDB</Description>
+		<PackageTags>generic repository pattern mongodb nosql</PackageTags>
+		<PackageProjectUrl>https://github.com/stefanodesimone/mongodb-generic-repository</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/stefanodesimone/mongodb-generic-repository</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<IncludeSymbols>true</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="MongoDB.Driver" Version="3.0.0" />
+		<None Include="README.md" Pack="true" PackagePath="\"/>
+	</ItemGroup>
+
+</Project>
