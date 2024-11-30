@@ -9,8 +9,8 @@
 		<Authors>stefanodesimone</Authors>
 		<Description>This repo provides implementation generic repository pattern on MongoDB</Description>
 		<PackageTags>generic repository pattern mongodb nosql</PackageTags>
-		<PackageProjectUrl>https://github.com/stefanodesimone/mongodb-generic-repository</PackageProjectUrl>
-		<RepositoryUrl>https://github.com/stefanodesimone/mongodb-generic-repository</RepositoryUrl>
+		<PackageProjectUrl>https://github.com/stefanodesimone/MongoDbRepoGeneric</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/stefanodesimone/MongoDbRepoGeneric</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
 		<IncludeSymbols>true</IncludeSymbols>
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
