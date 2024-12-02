@@ -45,6 +45,7 @@ jobs:
     - name: Use version
       run: echo 'Calculated version:' ${{ steps.calculate-version.outputs.version-string }}
 
+
  #   - name: 'Pack project'
  #     run: dotnet pack ${{ env.PROJECT_PATH }} --no-restore --no-build --configuration Release --include-symbols -p:PackageVersion=${{ steps.calculate-version.outputs.version-string }} --output ${{ env.PACKAGE_OUTPUT_DIRECTORY }}
 
