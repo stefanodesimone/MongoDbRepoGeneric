@@ -45,8 +45,8 @@ jobs:
     - name: Use version
       run: echo 'Calculated version:' ${{ steps.calculate-version.outputs.version-string }}
 
-    - name: 'Pack project'
-      run: dotnet pack ${{ env.PROJECT_PATH }} --no-restore --no-build --configuration Release --include-symbols -p:PackageVersion=${{ steps.calculate-version.outputs.version-string }} --output ${{ env.PACKAGE_OUTPUT_DIRECTORY }}
+ #   - name: 'Pack project'
+ #     run: dotnet pack ${{ env.PROJECT_PATH }} --no-restore --no-build --configuration Release --include-symbols -p:PackageVersion=${{ steps.calculate-version.outputs.version-string }} --output ${{ env.PACKAGE_OUTPUT_DIRECTORY }}
 
-    - name: 'Push package'
-      run: dotnet nuget push ${{ env.PACKAGE_OUTPUT_DIRECTORY }}/*.nupkg -k ${{ secrets.NUGET_APIKEY }} -s ${{ env.NUGET_SOURCE_URL }}
+ #   - name: 'Push package'
+ #     run: dotnet nuget push ${{ env.PACKAGE_OUTPUT_DIRECTORY }}/*.nupkg -k ${{ secrets.NUGET_APIKEY }} -s ${{ env.NUGET_SOURCE_URL }}
